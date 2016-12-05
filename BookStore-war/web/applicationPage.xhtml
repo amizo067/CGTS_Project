@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./template.xhtml">
+
+            <ui:define name="content">
+ 
+               <f:view>
+                   <h:form>
+                       
+                           <h:panelGrid columns="1" >
+                               <h:outputText value="Application ID" />
+                               <h:inputText id="applicationID" value="#{applicationBean.id}" required="true" />
+                               <h:message id="applicationMsg" for="[applicationID"/>
+                              
+                               
+                               <h:outputText value="Presentation Type" />
+                               <h:inputText id="presentationType" value="#{applicationBean.presentationType}" required="true" />
+                               <h:message id="presentationTypeMsg" for="[presentationType"/>
+                               <h:outputText value="Presentation Title}" />
+                               <h:inputText id="presentationTitle" value="#{applicationBean.presentationTitle}" required="true" />
+                               <h:message id="presentationTitleMsg" for="presentationTitle"/>
+                               <br></br>
+                               <h:outputText value="Expenses:" /> 
+                               <br></br>
+                               <h:outputText value="Registration" />
+                               <h:inputText id="registration" value="#{applicationBean.registrationExpense}" required="true" />
+                               <h:message id="registrationMsg" for="registration"/>
+                               <h:outputText value="Transportation" />
+                               <h:inputText id="transportation" value="#{applicationBean.transportationExpense}" />
+                               <h:message id="transportationMsg" for="transportation"/>                                 
+                               <h:outputText value="Accomodation" />
+                               <h:inputText id="accomodation" value="#{applicationBean.accomodationExpense}" />
+                               <h:message id="accomodationMsg" for="accomodation"/>                        
+                               <h:outputText value="Meals" />
+                               <h:inputText id="meals" value="#{applicationBean.mealsExpense}" />
+                               <h:message id="mealsMsg" for="meals"/>    
+                               
+                               
+                           </h:panelGrid>
+                           <h:commandButton value="Add" type="command"  
+                                            actionListener="#{applicationBean.addApplication}">
+                                <f:ajax execute="applicationID presentationType presentationTitle registration transportation accomodation meals" 
+                                        render="status applicationMsg presentationTypeMsg presentationTitleMsg registrationMsg transportationMsg accomodationMsg mealsMsg" />
+                </h:commandButton>
+                <h:commandButton value="Cancel" type="reset" />
+                
+                <div>
+                    <hr/>
+                    <hr/>
+                    <h:outputText  
+                        
+                        style="color:royalblue; font-size: large; font-weight: bold" 
+                        id="status" 
+                        value="#{applicationBean.status}"/>
+                </div>
+                   </h:form>
+               </f:view>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
