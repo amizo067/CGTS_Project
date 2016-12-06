@@ -53,7 +53,11 @@
                              <h:column>
                                  <f:facet name="header">Meals Expense</f:facet>
                                 <h:outputText value="#{app.mealsExpense}"/>
-                            </h:column>                         
+                            </h:column>  
+                             <h:column>
+                                 <f:facet name="header">Recommendation</f:facet>
+                                 <h:outputText value="#{app.appStatus}"/>
+                            </h:column>  
                             
                            
                         </h:dataTable>
@@ -65,9 +69,9 @@
                        <h:outputText value="Please enter the ID of the application you would like to review:         "/>
                        <h:inputText id="applicID" value="#{ReqAppBean.appID}" required="true" />
                         <select>
-                                        <option value="approve">Approve</option>
-                                        <option value="return">Return</option>
-                                        <option value="reject">Reject</option>                                        
+                                        <option value="#{ReqAppBean.appStatus}">Approve</option>
+                                        <option value="#{ReqAppBean.appStatus}">Return</option>
+                                        <option value="#{ReqAppBean.appStatus}">Reject</option>                                        
                         </select>
                        <span></span>
                         <h:commandButton value="Submit" type="command"  actionListener="#{ReqAppBean.makeRecommendation()}" ></h:commandButton>

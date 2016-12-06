@@ -17,8 +17,17 @@ public final class CatalogApplication {
     private double transportationExpense;
     private double accomodationExpense;
     private double mealsExpense;
+    private String appStatus;
+
+    public String getAppStatus() {
+        return appStatus;
+    }
+
+    public void setAppStatus(String appStatus) {
+        this.appStatus = appStatus;
+    }
     
-    public CatalogApplication(String appId, String presentationType, String presentationTitle, double registrationExpense, double transportationExpense, double accomodationExpense, double mealsExpense) {
+    public CatalogApplication(String appId, String presentationType, String presentationTitle, double registrationExpense, double transportationExpense, double accomodationExpense, double mealsExpense,String appStatus) {
         setAppId(appId);
         setPresentationType(presentationType);
         setPresentationTitle(presentationTitle);
@@ -26,6 +35,7 @@ public final class CatalogApplication {
         setTransportationExpense(transportationExpense);
         setAccomodationExpense(accomodationExpense);
         setMealsExpense(mealsExpense);
+        setAppStatus(appStatus);
     }
     public String getAppId() {
         return appId;

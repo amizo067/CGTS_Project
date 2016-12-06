@@ -35,4 +35,6 @@ public interface ApplicationFacadeLocal {
     
     public List<Application> findAllApplication();
     
+    public boolean updateApplication(String appID,String appStatus);
+    
 }

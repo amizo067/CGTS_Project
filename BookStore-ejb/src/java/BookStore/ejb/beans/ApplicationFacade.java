@@ -57,4 +57,17 @@ public class ApplicationFacade extends AbstractFacade<Application> implements Ap
         }
         return null;
     }    
+    @Override
+    public boolean updateApplication(String appID,String appStatus){
+        try {
+            Application application =(Application)em.find(Application.class,appID);
+            em.getTransaction().begin();            
+            application.setAppStatus("appStatus");
+            em.getTransaction().commit();                  
+            return true;
+        } catch (Exception e) {
+        }
+        return false;
+    }    
+    
 }

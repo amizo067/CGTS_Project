@@ -130,7 +130,7 @@ public class ReqAppBean {
     }
      public void makeRecommendation() {
         
-        if (applicationFacade.addApplication(appID,presentationType, presentationTitle,registrationExpense,transportationExpense, accomodationExpense, mealsExpense,appStatus)) {
+        if (applicationFacade.updateApplication(appID,appStatus)) {
            status = "Successful-Recommendation has been submitted";
         } else {
            status = "Failed-Recommendation was not submitted";

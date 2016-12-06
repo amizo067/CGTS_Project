@@ -62,7 +62,7 @@ public class CatalogApplicationBean implements Serializable {
         if (resultList != null) {
             for (Application resultList1 : resultList) {
                 Application x = (Application) resultList1;
-                applications.add(new CatalogApplication(x.getAppId(),x.getPresentationType(),x.getPresentationTitle(),x.getRegistrationExpense(),x.getTransportationExpense(),x.getAccomodationExpense(),x.getMealsExpense()));
+                applications.add(new CatalogApplication(x.getAppId(),x.getPresentationType(),x.getPresentationTitle(),x.getRegistrationExpense(),x.getTransportationExpense(),x.getAccomodationExpense(),x.getMealsExpense(),x.getAppStatus()));
             }
         }
         return "makeRecommendation";
