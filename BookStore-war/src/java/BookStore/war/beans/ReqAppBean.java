@@ -7,19 +7,12 @@
 package BookStore.war.beans;
 
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.annotation.Resource;
+import BookStore.ejb.beans.ApplicationFacadeLocal;
+import java.util.ResourceBundle;
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import persistence.ReqApp;
-import java.lang.*;
-
 /**
  *
  * @author alex
@@ -27,8 +20,8 @@ import java.lang.*;
 @Named(value = "ReqAppBean")
 @RequestScoped
 public class ReqAppBean {
-  
-    //private ApplicationFacadeLocal applicationFacade;
+    @EJB
+    private ApplicationFacadeLocal applicationFacade;
     private String appID;
     private String presentationType;
     private String presentationTitle;
@@ -38,10 +31,7 @@ public class ReqAppBean {
     private double mealsExpense;
     private String status; 
     private String recommendation;
-    @PersistenceContext(unitName = "BookStore-warPU")
-    private EntityManager em;
-    @Resource
-    private javax.transaction.UserTransaction utx;
+    
     
     public ReqAppBean(){
     
@@ -62,13 +52,13 @@ public class ReqAppBean {
     public void setAppID(String appID){
        this.appID=appID;
     }
-//    public ApplicationFacadeLocal getItemFacade() {
-//        return applicationFacade;
-//    }
-//
-//    public void setItemFacade(ApplicationFacadeLocal applicationFacade) {
-//        this.applicationFacade = applicationFacade;
-//    }
+    public ApplicationFacadeLocal getApplicationFacade() {
+        return applicationFacade;
+    }
+
+    public void setApplicationFacade(ApplicationFacadeLocal applicationFacade) {
+        this.applicationFacade = applicationFacade;
+    }
 
     public String getPresentationType() {
         return presentationType;
@@ -116,67 +106,30 @@ public class ReqAppBean {
     public Double getMealsExpense() {
         return mealsExpense;
     }
-  public EntityManager getEm() {
-        return em;
-    }
-
-    public void setEm(EntityManager em) {
-        this.em = em;
-    }
+  
     public void setMealsExpense(Double mealsExpense) {
         this.mealsExpense = mealsExpense;
     }
-    public void persist(Object object) {
-        try {
-            utx.begin();
-            em.persist(object);
-            utx.commit();
-        } catch (Exception e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
-            throw new RuntimeException(e);
-        }
-    }
+
 
     public void addApplication() {
-        try {
-            ReqApp app = new ReqApp();     
-            app.setAppId(appID);
-            app.setPresentationType(presentationType);
-            app.setPresentationTitle(presentationTitle);
-            app.setRegistrationExpense(registrationExpense);
-            app.setTransportationExpense(transportationExpense);          
-            app.setAccomodationExpense(accomodationExpense);
-            app.setMealsExpense(mealsExpense);           
-            persist(app);
-            status="New Account Created Fine";
-        } catch (RuntimeException ex ) {
-            System.out.println(ex); 
-            Logger.getLogger(ReqAppBean.class.getName()).log(Level.SEVERE, null, ex);
-            StringWriter sw = new StringWriter();
-PrintWriter pw = new PrintWriter(sw);
-ex.printStackTrace(pw);
-sw.toString(); // stack trace as a string
-            status="Error While Creating New Account" + ex + sw.toString();
+        FacesContext context = FacesContext.getCurrentInstance();
+        ResourceBundle bundle = context.getApplication().getResourceBundle(context, "msg");
+        if (applicationFacade.addApplication(appID,presentationType, presentationTitle,registrationExpense,transportationExpense, accomodationExpense, mealsExpense)) {
+           status = bundle.getString("addOk");
+        } else {
+           status = bundle.getString("addFail");
         }
     }
-//    public void addApplication() {
-//        FacesContext context = FacesContext.getCurrentInstance();
-//        ResourceBundle bundle = context.getApplication().getResourceBundle(context, "msg");
-//        if (applicationFacade.addApplication(id,presentationType, presentationTitle,registrationExpense,transportationExpense, accomodationExpense, mealsExpense)) {
-//           status = bundle.getString("addOk");
-//        } else {
-//           status = bundle.getString("addFail");
-//        }
-//    }
-//     public void makeRecommendation() {
-//        FacesContext context = FacesContext.getCurrentInstance();
-//        ResourceBundle bundle = context.getApplication().getResourceBundle(context, "msg");
-//        if (applicationFacade.addApplication(id,presentationType, presentationTitle,registrationExpense,transportationExpense, accomodationExpense, mealsExpense)) {
-//           status = bundle.getString("addOk");
-//        } else {
-//           status = bundle.getString("addFail");
-//        }
-//    }
+     public void makeRecommendation() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        ResourceBundle bundle = context.getApplication().getResourceBundle(context, "msg");
+        if (applicationFacade.addApplication(appID,presentationType, presentationTitle,registrationExpense,transportationExpense, accomodationExpense, mealsExpense)) {
+           status = bundle.getString("addOk");
+        } else {
+           status = bundle.getString("addFail");
+        }
+    }
 
    
 }

@@ -66,6 +66,28 @@
                         value="#{ReqAppBean.status}"/>
                 </div>
                    </h:form>
+                   <h1 align="center">"Applications"</h1>
+                    <h:form>
+                       
+                        <h:dataTable  cellpadding="10pt"  value="#{catalogBean.items}" var="book">
+                            <h:column>
+                               <h:outputText value="#{book.shortDescription}"/>
+                            </h:column>
+                            <h:column>
+                                <h:outputText value="#{book.cost}">
+                                    <f:convertNumber type="currency" currencySymbol="$" />
+                                </h:outputText>
+                            </h:column>
+                            <h:column>
+                                <h:outputText value="#{book.longDescription}"/>
+                            </h:column>
+                            <h:column>
+                                <h:commandButton action="#{catalogBean.orderBook()}" value="#{msg['addCart']}">
+                                    <f:setPropertyActionListener target="#{catalogBean.orderBookId}" value="#{book.itemID}"/>
+                                </h:commandButton>
+                            </h:column>
+                        </h:dataTable>
+                    </h:form>
                </f:view>
 
             </ui:define>

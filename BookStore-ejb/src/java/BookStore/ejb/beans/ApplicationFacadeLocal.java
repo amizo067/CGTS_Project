@@ -31,7 +31,7 @@ public interface ApplicationFacadeLocal {
 
     int count();
     
-    public boolean addApplication(String id, String presentationType, String presentationTitle, double registrationExpense, double transportationExpense, double accomodationExpense, double mealsExpense);
+    public boolean addApplication(String appId, String presentationType, String presentationTitle, double registrationExpense, double transportationExpense, double accomodationExpense, double mealsExpense);
     
     public List<Application> findAllApplication();
     

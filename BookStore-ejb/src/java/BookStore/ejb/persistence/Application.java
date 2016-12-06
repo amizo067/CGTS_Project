@@ -18,7 +18,7 @@ import javax.persistence.Id;
 public class Application implements Serializable {
      private static final long serialVersionUID = 1L;
         @Id
-    private String id;
+    private String appId;
     private String presentationType;
     private String presentationTitle;
     private double registrationExpense;
@@ -30,8 +30,8 @@ public class Application implements Serializable {
 
     }
     
-    public Application(String id, String presentationType, String presentationTitle, double registrationExpense, double transportationExpense, double accomodationExpense, double mealsExpense) {
-        this.id=id;
+    public Application(String appId, String presentationType, String presentationTitle, double registrationExpense, double transportationExpense, double accomodationExpense, double mealsExpense) {
+        this.appId=appId;
         this.presentationType=presentationType;
         this.presentationTitle=presentationTitle;
         this.registrationExpense=registrationExpense;
@@ -40,12 +40,12 @@ public class Application implements Serializable {
         this.mealsExpense=mealsExpense;
     }
     
-    public String getId() {
-        return id;
+    public String getAppId() {
+        return appId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setAppId(String appId) {
+        this.appId = appId;
     }
 
     public String getPresentationType() {
@@ -99,7 +99,7 @@ public class Application implements Serializable {
      @Override
     public int hashCode() {
         int hash = 0;
-        hash += (this.id != null ? this.id.hashCode() : 0);
+        hash += (this.appId != null ? this.appId.hashCode() : 0);
         return hash;
     }
 
@@ -110,12 +110,12 @@ public class Application implements Serializable {
             return false;
         }
         Application other = (Application)object;
-        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) return false;
+        if (this.appId != other.appId && (this.appId == null || !this.appId.equals(other.appId))) return false;
         return true;
     }
 
      @Override
     public String toString() {
-        return "Library.persistence.Application[id=" + id + "]";
+        return "Library.persistence.Application[id=" + appId + "]";
     }
 }
