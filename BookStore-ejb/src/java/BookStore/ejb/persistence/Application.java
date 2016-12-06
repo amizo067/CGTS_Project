@@ -9,12 +9,14 @@ package BookStore.ejb.persistence;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author alex
  */
 @Entity
+@Table(name="table7680262")
 public class Application implements Serializable {
      private static final long serialVersionUID = 1L;
         @Id
