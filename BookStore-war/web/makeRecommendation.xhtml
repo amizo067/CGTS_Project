@@ -15,33 +15,33 @@
                    <h:form>
                        
                            <h:panelGrid columns="1" >
-                               <h:outputText value="Create Application:" />
+                               <h:outputText value="Application information:" />
                                <h:outputText value="Application ID" />
-                               <h:inputText id="applicationID" value="#{applicationBean.id}" required="true" />
+                               <h:inputText id="applicationID" value="#{ReqAppBean.appID}" required="true" />
                                <h:message id="applicationMsg" for="[applicationID"/>                                               
                                <h:outputText value="Presentation Type" />
-                               <h:inputText id="presentationType" value="#{applicationBean.presentationType}" required="true" />
+                               <h:inputText id="presentationType" value="#{ReqAppBean.presentationType}" required="true" />
                                <h:message id="presentationTypeMsg" for="[presentationType"/>
                                <h:outputText value="Presentation Title" />
-                               <h:inputText id="presentationTitle" value="#{applicationBean.presentationTitle}" required="true" />
+                               <h:inputText id="presentationTitle" value="#{ReqAppBean.presentationTitle}" required="true" />
                                <h:message id="presentationTitleMsg" for="presentationTitle"/>
                                <br></br>
-                               <h:outputText value="Expenses:" /> 
+                               <h:outputText value="Expenses Information:" /> 
                                <br></br>
                                <h:outputText value="Registration" />
-                               <h:inputText id="registration" value="#{applicationBean.registrationExpense}" required="true" />
+                               <h:inputText id="registration" value="#{ReqAppBean.registrationExpense}" required="true" />
                                <h:message id="registrationMsg" for="registration"/>
                                <h:outputText value="Transportation" />
-                               <h:inputText id="transportation" value="#{applicationBean.transportationExpense}" />
+                               <h:inputText id="transportation" value="#{ReqAppBean.transportationExpense}" />
                                <h:message id="transportationMsg" for="transportation"/>                                 
                                <h:outputText value="Accomodation" />
-                               <h:inputText id="accomodation" value="#{applicationBean.accomodationExpense}" />
+                               <h:inputText id="accomodation" value="#{ReqAppBean.accomodationExpense}" />
                                <h:message id="accomodationMsg" for="accomodation"/>                        
                                <h:outputText value="Meals" />
-                               <h:inputText id="meals" value="#{applicationBean.mealsExpense}" />
+                               <h:inputText id="meals" value="#{ReqAppBean.mealsExpense}" />
                                <h:message id="mealsMsg" for="meals"/>    
                                <h:selectOneRadio id="userType" 
-                                            value="#{applicationBean.recommendation}" 
+                                            value="#{ReqAppBean.recommendation}" 
                                             required="true" requiredMessage="Please enter Recommendation">
                                    <f:selectItem id="approve" itemLabel="Approve" itemValue="approve" />
                                    <f:selectItem id="return" itemLabel="Return" itemValue="return" />
@@ -49,8 +49,8 @@
                                 </h:selectOneRadio>  
                                
                            </h:panelGrid>
-                           <h:commandButton value="Add" type="command"  
-                                            actionListener="#{applicationBean.makeRecommendation}">
+                           <h:commandButton value="Make recommendation" type="command"  
+                                            actionListener="#{ReqAppBean.makeRecommendation}">
                                 <f:ajax execute="applicationID presentationType presentationTitle registration transportation accomodation meals" 
                                         render="status applicationMsg presentationTypeMsg presentationTitleMsg registrationMsg transportationMsg accomodationMsg mealsMsg" />
                 </h:commandButton>
@@ -63,7 +63,7 @@
                         
                         style="color:royalblue; font-size: large; font-weight: bold" 
                         id="status" 
-                        value="#{applicationBean.status}"/>
+                        value="#{ReqAppBean.status}"/>
                 </div>
                    </h:form>
                </f:view>
