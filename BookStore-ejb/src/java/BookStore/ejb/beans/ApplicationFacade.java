@@ -42,11 +42,15 @@ public class ApplicationFacade extends AbstractFacade<Application> implements Ap
         return true;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<Application> findAllApplication() {
         try {
             Query query = em.createQuery(
-                "SELECT * FROM Application");         
+                "SELECT u FROM Application u");         
             List resultList = query.getResultList();
             return resultList;
         } catch (Exception e) {

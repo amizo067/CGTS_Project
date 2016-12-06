@@ -13,46 +13,7 @@
  
                <f:view>
                    <h:form>                       
-                           <h:panelGrid columns="1" >
-                               <h:outputText value="Application information:" />
-                               <h:outputText value="Application ID" />
-                               <h:inputText id="applicationID" value="#{ReqAppBean.appID}" required="true" />
-                               <h:message id="applicationMsg" for="[applicationID"/>                                               
-                               <h:outputText value="Presentation Type" />
-                               <h:inputText id="presentationType" value="#{ReqAppBean.presentationType}" required="true" />
-                               <h:message id="presentationTypeMsg" for="[presentationType"/>
-                               <h:outputText value="Presentation Title" />
-                               <h:inputText id="presentationTitle" value="#{ReqAppBean.presentationTitle}" required="true" />
-                               <h:message id="presentationTitleMsg" for="presentationTitle"/>
-                               <br></br>
-                               <h:outputText value="Expenses Information:" /> 
-                               <br></br>
-                               <h:outputText value="Registration" />
-                               <h:inputText id="registration" value="#{ReqAppBean.registrationExpense}" required="true" />
-                               <h:message id="registrationMsg" for="registration"/>
-                               <h:outputText value="Transportation" />
-                               <h:inputText id="transportation" value="#{ReqAppBean.transportationExpense}" />
-                               <h:message id="transportationMsg" for="transportation"/>                                 
-                               <h:outputText value="Accomodation" />
-                               <h:inputText id="accomodation" value="#{ReqAppBean.accomodationExpense}" />
-                               <h:message id="accomodationMsg" for="accomodation"/>                        
-                               <h:outputText value="Meals" />
-                               <h:inputText id="meals" value="#{ReqAppBean.mealsExpense}" />
-                               <h:message id="mealsMsg" for="meals"/>    
-                               <h:selectOneRadio id="userType" 
-                                            value="#{ReqAppBean.recommendation}" 
-                                            required="true" requiredMessage="Please enter Recommendation">
-                                   <f:selectItem id="approve" itemLabel="Approve" itemValue="approve" />
-                                   <f:selectItem id="return" itemLabel="Return" itemValue="return" />
-                                   <f:selectItem id="reject" itemLabel="Reject" itemValue="reject" />
-                                </h:selectOneRadio>  
-                               
-                           </h:panelGrid>
-                           <h:commandButton value="Make recommendation" type="command"  
-                                            actionListener="#{ReqAppBean.makeRecommendation}">
-                                <f:ajax execute="applicationID presentationType presentationTitle registration transportation accomodation meals" 
-                                        render="status applicationMsg presentationTypeMsg presentationTitleMsg registrationMsg transportationMsg accomodationMsg mealsMsg" />
-                </h:commandButton>
+                    
                 <h:commandButton value="Cancel" type="reset" />
                 
                 <div>
@@ -64,7 +25,35 @@
                         id="status" 
                         value="#{ReqAppBean.status}"/>
                 </div>
-                   </h:form>                       
+                   <!--</h:form>-->
+                   <h:commandButton value="View Applications " type="command"  
+                                            actionListener="#{catalogApplicationBean.getAllApplications}">
+                   </h:commandButton>
+<!--                    <h:form>-->
+                        
+                        <h:dataTable  cellpadding="10pt"  value="#{catalogApplicationBean.applications}" var="application">
+                            <h:column>
+                               <h:outputText value="#{application.presentationType}"/>
+                            </h:column>
+                            <h:column>
+                                <h:outputText value="#{application.presentationTitle}">                                   
+                                </h:outputText>
+                            </h:column>
+                            <h:column>
+                                <h:outputText value="#{application.registrationExpense}"/>
+                            </h:column>
+                             <h:column>
+                                <h:outputText value="#{application.transportationExpense}"/>
+                            </h:column>
+                             <h:column>
+                                <h:outputText value="#{application.accomodationExpense}"/>
+                            </h:column>
+                             <h:column>
+                                <h:outputText value="#{application.mealsExpense}"/>
+                            </h:column>
+                           
+                        </h:dataTable>
+                    </h:form>
 
                </f:view>
 

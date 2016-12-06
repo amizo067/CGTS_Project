@@ -7,7 +7,7 @@ package BookStore.war.beans;
 
 /**
  *
- * @author ssome
+ * @author alex
  */
 public final class CatalogItem {
 private String itemID;
