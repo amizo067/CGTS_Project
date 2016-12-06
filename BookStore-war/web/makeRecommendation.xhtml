@@ -14,17 +14,9 @@
                <f:view>
                    <h:form>                       
                     
-                <h:commandButton value="Cancel" type="reset" />
                 
-                <div>
-                    <hr/>
-                    <hr/>
-                    <h:outputText  
-                        
-                        style="color:royalblue; font-size: large; font-weight: bold" 
-                        id="status" 
-                        value="#{ReqAppBean.status}"/>
-                </div>
+                
+              
                    <!--</h:form>-->
                    <h:commandButton value="View Applications " type="command"  
                                             actionListener="#{catalogApplicationBean.getAllApplications}">
@@ -35,7 +27,7 @@
                            
                             <h:column>
                                <f:facet name="header">Application ID</f:facet>
-                               <h:outputText value="#{app.appId}"/>
+                               <h:outputText id="appRecID" value="#{app.appId}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Presentation Type</f:facet>
@@ -61,11 +53,25 @@
                              <h:column>
                                  <f:facet name="header">Meals Expense</f:facet>
                                 <h:outputText value="#{app.mealsExpense}"/>
-                            </h:column>
+                            </h:column>                         
+                            
                            
                         </h:dataTable>
                     </h:form>
-
+                   <h:form> 
+                       <br></br>
+                       <h1>Make Recommendation</h1>
+                        <br></br>
+                       <h:outputText value="Please enter the ID of the application you would like to review:         "/>
+                       <h:inputText id="applicID" value="#{ReqAppBean.appID}" required="true" />
+                        <select>
+                                        <option value="approve">Approve</option>
+                                        <option value="return">Return</option>
+                                        <option value="reject">Reject</option>                                        
+                        </select>
+                       <span></span>
+                        <h:commandButton value="Submit" type="command"  actionListener="#{ReqAppBean.makeRecommendation()}" ></h:commandButton>
+                   </h:form>
                </f:view>
 
             </ui:define>
