@@ -16,7 +16,7 @@ import javax.persistence.Table;
  * @author alex
  */
 @Entity
-@Table(name="table7680262")
+@Table(name="Application7680262")
 public class Application implements Serializable {
      private static final long serialVersionUID = 1L;
         @Id
@@ -27,12 +27,13 @@ public class Application implements Serializable {
     private double transportationExpense;
     private double accomodationExpense;
     private double mealsExpense;
+    private String appStatus;
     
     public Application() {
 
     }
     
-    public Application(String appId, String presentationType, String presentationTitle, double registrationExpense, double transportationExpense, double accomodationExpense, double mealsExpense) {
+    public Application(String appId, String presentationType, String presentationTitle, double registrationExpense, double transportationExpense, double accomodationExpense, double mealsExpense,String appStatus) {
         this.appId=appId;
         this.presentationType=presentationType;
         this.presentationTitle=presentationTitle;
@@ -40,6 +41,15 @@ public class Application implements Serializable {
         this.transportationExpense=transportationExpense;
         this.accomodationExpense=accomodationExpense;
         this.mealsExpense=mealsExpense;
+        this.appStatus=appStatus;
+    }
+
+    public String getAppStatus() {
+        return appStatus;
+    }
+
+    public void setAppStatus(String appStatus) {
+        this.appStatus = appStatus;
     }
     
     public String getAppId() {

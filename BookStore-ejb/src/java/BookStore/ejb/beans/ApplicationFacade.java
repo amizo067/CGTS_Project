@@ -32,8 +32,8 @@ public class ApplicationFacade extends AbstractFacade<Application> implements Ap
     }
 
     @Override
-    public boolean addApplication(String appId, String presentationType, String presentationTitle, double registrationExpense, double transportationExpense, double accomodationExpense, double mealsExpense){
-        Application application = new Application(appId,presentationType, presentationTitle,registrationExpense,transportationExpense, accomodationExpense, mealsExpense);
+    public boolean addApplication(String appId, String presentationType, String presentationTitle, double registrationExpense, double transportationExpense, double accomodationExpense, double mealsExpense,String appStatus){
+        Application application = new Application(appId,presentationType, presentationTitle,registrationExpense,transportationExpense, accomodationExpense, mealsExpense,appStatus);
         try {
             create(application);
         } catch (Exception e) {

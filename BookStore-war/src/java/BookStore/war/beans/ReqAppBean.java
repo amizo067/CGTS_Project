@@ -31,6 +31,8 @@ public class ReqAppBean {
     private double mealsExpense;
     private String status; 
     private String recommendation;
+    private String appStatus;
+
     
     
     public ReqAppBean(){
@@ -59,7 +61,14 @@ public class ReqAppBean {
     public void setApplicationFacade(ApplicationFacadeLocal applicationFacade) {
         this.applicationFacade = applicationFacade;
     }
+    public String getAppStatus() {
+        return appStatus;
+    }
 
+    public void setAppStatus(String appStatus) {
+        this.appStatus = appStatus;
+    }
+    
     public String getPresentationType() {
         return presentationType;
     }
@@ -113,21 +122,18 @@ public class ReqAppBean {
 
 
     public void addApplication() {
-        FacesContext context = FacesContext.getCurrentInstance();
-        ResourceBundle bundle = context.getApplication().getResourceBundle(context, "msg");
-        if (applicationFacade.addApplication(appID,presentationType, presentationTitle,registrationExpense,transportationExpense, accomodationExpense, mealsExpense)) {
-           status = bundle.getString("addOk");
+        if (applicationFacade.addApplication(appID,presentationType, presentationTitle,registrationExpense,transportationExpense, accomodationExpense, mealsExpense,appStatus)) {
+           status = "Successful-Application was created";
         } else {
-           status = bundle.getString("addFail");
+           status = "Failed-Application wasn't created";
         }
     }
      public void makeRecommendation() {
-        FacesContext context = FacesContext.getCurrentInstance();
-        ResourceBundle bundle = context.getApplication().getResourceBundle(context, "msg");
-        if (applicationFacade.addApplication(appID,presentationType, presentationTitle,registrationExpense,transportationExpense, accomodationExpense, mealsExpense)) {
-           status = bundle.getString("addOk");
+        
+        if (applicationFacade.addApplication(appID,presentationType, presentationTitle,registrationExpense,transportationExpense, accomodationExpense, mealsExpense,appStatus)) {
+           status = "Successful-Recommendation has been submitted";
         } else {
-           status = bundle.getString("addFail");
+           status = "Failed-Recommendation was not submitted";
         }
     }
 

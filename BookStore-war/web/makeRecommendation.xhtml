@@ -31,25 +31,36 @@
                    </h:commandButton>
 <!--                    <h:form>-->
                         
-                        <h:dataTable  cellpadding="10pt"  value="#{catalogApplicationBean.applications}" var="application">
+                        <h:dataTable  cellpadding="10pt"  value="#{catalogApplicationBean.applications}" var="app">
+                           
                             <h:column>
-                               <h:outputText value="#{application.presentationType}"/>
+                               <f:facet name="header">Application ID</f:facet>
+                               <h:outputText value="#{app.appId}"/>
                             </h:column>
                             <h:column>
-                                <h:outputText value="#{application.presentationTitle}">                                   
+                                <f:facet name="header">Presentation Type</f:facet>
+                               <h:outputText value="#{app.presentationType}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Presentation Title</f:facet>
+                                <h:outputText value="#{app.presentationTitle}">                                   
                                 </h:outputText>
                             </h:column>
                             <h:column>
-                                <h:outputText value="#{application.registrationExpense}"/>
+                                 <f:facet name="header">Registration Expense</f:facet>
+                                <h:outputText value="#{app.registrationExpense}"/>
                             </h:column>
                              <h:column>
-                                <h:outputText value="#{application.transportationExpense}"/>
+                                <f:facet name="header">Transportation Expense</f:facet>
+                                <h:outputText value="#{app.transportationExpense}"/>
                             </h:column>
                              <h:column>
-                                <h:outputText value="#{application.accomodationExpense}"/>
+                                <f:facet name="header">Accommodation Expense</f:facet>
+                                <h:outputText value="#{app.accomodationExpense}"/>
                             </h:column>
                              <h:column>
-                                <h:outputText value="#{application.mealsExpense}"/>
+                                 <f:facet name="header">Meals Expense</f:facet>
+                                <h:outputText value="#{app.mealsExpense}"/>
                             </h:column>
                            
                         </h:dataTable>
