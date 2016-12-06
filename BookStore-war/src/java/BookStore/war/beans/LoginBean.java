@@ -80,7 +80,7 @@ public class LoginBean {
         this.status=status;
     }
     
-    public void loginRequester() {
+ public String loginRequester() {
          UserAcc acc = em.find(UserAcc.class, loginID);
          if (acc != null) {
              try {
@@ -94,16 +94,21 @@ public class LoginBean {
                      //login ok - set user in session context
                      HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
                      session.setAttribute("User", acc);
-                     status="Login Successful"; 
+                     return "applicationPage";
                  } else {
-                    status="Invalid Login, Please Try again"; 
+                   status="Login failed";
+                   return "loginRequester";
+                   
                  }
              } catch (UnsupportedEncodingException | NoSuchAlgorithmException ex) {
                  Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
              }
          } else {
-             status="Invalid Login, Please Try again";
+             status="Login failed";
+             return "loginRequester";
          }
+        status="Login failed";
+        return "loginRequester";
     }
     
      public String loginSupervisor() {
@@ -122,15 +127,18 @@ public class LoginBean {
                      session.setAttribute("User", acc);
                      return "makeRecommendation";
                  } else {
-                   return "index";
+                   status="Login failed";
+                   return "loginSupervisor";
                  }
              } catch (UnsupportedEncodingException | NoSuchAlgorithmException ex) {
                  Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
              }
          } else {
-             return "index";
+             status="Login failed";
+                   return "loginSupervisor";
          }
-        return "index";
+        status="Login failed";
+        return "loginSupervisor";
     }
     
     public String logout() {

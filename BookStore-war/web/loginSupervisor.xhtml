@@ -14,14 +14,14 @@
                     <h:form>
                     <h:panelGrid columns="2">
                     <h:outputText value="User Id"></h:outputText>
-                    <h:inputText id="id" value="#{loginBean.userId}">
+                    <h:inputText id="loginId" value="#{loginBean.loginID}">
                     </h:inputText>          
                     <h:outputText value="Password"></h:outputText>
                     <h:inputSecret id="passwd" value="#{loginBean.password}">
                     </h:inputSecret>          
                     </h:panelGrid>
-                   <h:commandButton value="Login" type="command"  actionListener="#{loginBean.loginSupervisor}">
-                   <f:ajax execute="id  passwd" 
+                   <h:commandButton value="Login" type="command"  action="#{loginBean.loginSupervisor}">
+                   <f:ajax execute="loginId  passwd" 
                            render="status"/>
                     </h:commandButton>      
                 <div>

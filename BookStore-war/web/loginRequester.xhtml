@@ -20,11 +20,11 @@
                     <h:inputSecret id="passwd" value="#{loginBean.password}">
                     </h:inputSecret>          
                     </h:panelGrid>
-                   <h:commandButton value="Login" type="command"  actionListener="#{loginBean.loginRequester}">
+                   <h:commandButton value="Login" type="command"  action="#{loginBean.loginRequester}">
                    <f:ajax execute="id  passwd" 
                            render="status"/>
                     </h:commandButton>      
-                    <h:button outcome="applicationPage" value="Create application" /> 
+                   
                 <div>
                     <hr/>
                     <hr/>

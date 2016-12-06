@@ -35,11 +35,11 @@ public class ApplicationBean {
     
     }
     
-    public int getID(int id){
+    public String getID(){
         return id;
     }
     
-    public void setID(){
+    public void setID(String id){
        this.id=id;
     }
     public ApplicationFacadeLocal getItemFacade() {
