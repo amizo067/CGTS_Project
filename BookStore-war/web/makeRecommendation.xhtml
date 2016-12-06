@@ -14,14 +14,9 @@
                <f:view>
                    <h:form>                       
                     
-                
-                
-              
-                   <!--</h:form>-->
                    <h:commandButton value="View Applications " type="command"  
                                             actionListener="#{catalogApplicationBean.getAllApplications}">
                    </h:commandButton>
-<!--                    <h:form>-->
                         
                         <h:dataTable  cellpadding="10pt"  value="#{catalogApplicationBean.applications}" var="app">
                            
@@ -75,6 +70,12 @@
                         </select>
                        <span></span>
                         <h:commandButton value="Submit" type="command"  actionListener="#{ReqAppBean.makeRecommendation()}" ></h:commandButton>
+                        <hr></hr>
+                        <h:outputText  
+                        
+                        style="color:royalblue; font-size: large; font-weight: bold" 
+                        id="status" 
+                        value="#{ReqAppBean.status}"/>
                    </h:form>
                </f:view>
 

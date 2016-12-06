@@ -57,13 +57,23 @@ public class ApplicationFacade extends AbstractFacade<Application> implements Ap
         }
         return null;
     }    
+    
     @Override
     public boolean updateApplication(String appID,String appStatus){
         try {
-            Application application =(Application)em.find(Application.class,appID);
-            em.getTransaction().begin();            
-            application.setAppStatus("appStatus");
-            em.getTransaction().commit();                  
+//            Application application =(Application)em.find(Application.class,appID);
+            Query query;
+            if (appStatus.equals("Approve") ){
+                 query = em.createQuery("update Application  a set a.appStatus= 'Approve' where a.appId= :appID");
+            }else if(appStatus.equals("Return")){
+                 query = em.createQuery("update Application  a set a.appStatus= 'Return' where a.appId= :appID");
+            }else{
+                 query = em.createQuery("update Application  a set a.appStatus= 'Reject' where a.appId= :appID");
+            }              
+                   
+            query.setParameter("appID",appID);
+            query.executeUpdate();
+            
             return true;
         } catch (Exception e) {
         }

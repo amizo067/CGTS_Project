@@ -19,14 +19,6 @@ public final class CatalogApplication {
     private double mealsExpense;
     private String appStatus;
 
-    public String getAppStatus() {
-        return appStatus;
-    }
-
-    public void setAppStatus(String appStatus) {
-        this.appStatus = appStatus;
-    }
-    
     public CatalogApplication(String appId, String presentationType, String presentationTitle, double registrationExpense, double transportationExpense, double accomodationExpense, double mealsExpense,String appStatus) {
         setAppId(appId);
         setPresentationType(presentationType);
@@ -37,6 +29,15 @@ public final class CatalogApplication {
         setMealsExpense(mealsExpense);
         setAppStatus(appStatus);
     }
+    
+     public String getAppStatus() {
+        return appStatus;
+    }
+
+    public void setAppStatus(String appStatus) {
+        this.appStatus = appStatus;
+    }
+    
     public String getAppId() {
         return appId;
     }
