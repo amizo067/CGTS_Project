@@ -64,11 +64,12 @@ public class ApplicationFacade extends AbstractFacade<Application> implements Ap
 //            Application application =(Application)em.find(Application.class,appID);
             Query query;
             if (appStatus.equals("Approve") ){
-                 query = em.createQuery("update Application  a set a.appStatus= 'Approve' where a.appId= :appID");
+                
+                 query = em.createQuery("update Application set appStatus= 'Approve' where appId= :appID");
             }else if(appStatus.equals("Return")){
-                 query = em.createQuery("update Application  a set a.appStatus= 'Return' where a.appId= :appID");
+                 query = em.createQuery("update Application set appStatus= 'Return' where appId= :appID");
             }else{
-                 query = em.createQuery("update Application  a set a.appStatus= 'Reject' where a.appId= :appID");
+                 query = em.createQuery("update Application set appStatus= 'Reject' where appId= :appID");
             }              
                    
             query.setParameter("appID",appID);

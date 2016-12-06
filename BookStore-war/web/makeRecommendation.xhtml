@@ -18,7 +18,7 @@
                                             actionListener="#{catalogApplicationBean.getAllApplications}">
                    </h:commandButton>
                         
-                        <h:dataTable  cellpadding="10pt"  value="#{catalogApplicationBean.applications}" var="app">
+                        <h:dataTable  cellpadding="10pt"  value="#{catalogApplicationBean.application}" var="app">
                            
                             <h:column>
                                <f:facet name="header">Application ID</f:facet>
@@ -63,11 +63,14 @@
                         <br></br>
                        <h:outputText value="Please enter the ID of the application you would like to review:         "/>
                        <h:inputText id="applicID" value="#{ReqAppBean.appID}" required="true" />
-                        <select>
-                                        <option value="#{ReqAppBean.appStatus}">Approve</option>
-                                        <option value="#{ReqAppBean.appStatus}">Return</option>
-                                        <option value="#{ReqAppBean.appStatus}">Reject</option>                                        
-                        </select>
+                        
+                       <h:selectOneRadio id="applicStatus" 
+                                value="#{ReqAppBean.appStatus}" 
+                                required="true" requiredMessage="Please enter User Type">
+                       <f:selectItem id="approve" itemLabel="Approve" itemValue="Approve" />
+                       <f:selectItem id="return" itemLabel="Return" itemValue="Return" />
+                       <f:selectItem id="reject" itemLabel="Reject" itemValue="Reject" />
+                    </h:selectOneRadio>  
                        <span></span>
                         <h:commandButton value="Submit" type="command"  actionListener="#{ReqAppBean.makeRecommendation()}" ></h:commandButton>
                         <hr></hr>

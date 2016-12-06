@@ -67,6 +67,5 @@ public class CatalogApplicationBean implements Serializable {
         }
         return "makeRecommendation";
     }
-    
 
 }
