@@ -11,13 +11,15 @@ import BookStore.ejb.persistence.Application;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 /**
  *
- * @author alex
+ * @author Alex
  */
 @Named(value = "catalogApplicationBean")
 @SessionScoped
@@ -25,12 +27,12 @@ public class CatalogApplicationBean implements Serializable {
     @EJB
     private ApplicationFacadeLocal applicationFacade;
      
-   
-
-    private ArrayList<CatalogApplication> applications;
- 
     
    
+    private ArrayList<CatalogApplication> applications;
+    
+    
+  
 
 
     /**
@@ -46,9 +48,9 @@ public class CatalogApplicationBean implements Serializable {
     public void setApplication(ArrayList<CatalogApplication> applications) {
         this.applications = applications;
     }
+  
+
     
-    
-   
     /**
      * Creates a new instance of CatalogBean
      */
@@ -56,7 +58,7 @@ public class CatalogApplicationBean implements Serializable {
     }
     
     public String getAllApplications() {
-       
+        
         applications=new ArrayList<>();
         List<Application> resultList = applicationFacade.findAllApplication();
         if (resultList != null) {
@@ -67,5 +69,6 @@ public class CatalogApplicationBean implements Serializable {
         }
         return "makeRecommendation";
     }
-
+  
+  
 }
